@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Drawing;
 
 namespace ShaderEditor
 {
-  public class TreeNodeAttribute : Attribute
-  {
-    public TreeNodeAttribute()
-    {
-      Hide = false;
-    }
+	public class TreeNodeAttribute : Attribute
+	{
+		public TreeNodeAttribute()
+		{
+			Hide = false;
+		}
 
-    //public TreeNodeAttribute( bool bHide)
-    //{
-    //  Hide = bHide;
-    //}
+		//public TreeNodeAttribute( bool bHide)
+		//{
+		//  Hide = bHide;
+		//}
 
-    public bool Hide { get; set; }
-  }
+		public bool Hide { get; set; }
+	}
 }
