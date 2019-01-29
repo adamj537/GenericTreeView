@@ -53,7 +53,7 @@ namespace ShaderEditor
 
       // Binary format
       BinaryFormatter bf = new BinaryFormatter();
-      Stream fileStream = new FileStream(@"c:\test.dat", FileMode.Create, FileAccess.Write, FileShare.None);
+      Stream fileStream = new FileStream(@"C:\\Users\\ajohnson\\Desktop\\test.dat", FileMode.Create, FileAccess.Write, FileShare.None);
 
       bf.Serialize(fileStream, projectItem);
 
