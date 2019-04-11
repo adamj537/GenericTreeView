@@ -1,6 +1,6 @@
 ﻿namespace GenericTreeView
 {
-	public interface IBackgroundItem : INamedObjectItem, IObjectItem
+	public interface IBackgroundItem : INamedObjectItem
 	{
 	}
 }

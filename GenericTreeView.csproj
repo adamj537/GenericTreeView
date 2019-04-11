@@ -60,7 +60,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="INamedObject.cs" />
-    <Compile Include="IObjectItem.cs" />
     <Compile Include="Items\AssemblyItem.cs" />
     <Compile Include="Items\ComponentItem.cs" />
     <Compile Include="Items\ContainerItem.cs" />
