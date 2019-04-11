@@ -9,11 +9,6 @@ namespace ShaderEditor
 			Hide = false;
 		}
 
-		//public TreeNodeAttribute( bool bHide)
-		//{
-		//  Hide = bHide;
-		//}
-
 		public bool Hide { get; set; }
 	}
 }

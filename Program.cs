@@ -15,21 +15,6 @@ namespace ShaderEditor
 		static void Main()
 		{
 			// Inspiration:  https://www.codeproject.com/Articles/23297/Generic-TreeView
-			/*
-
-			 project
-			 * workspace
-			 * materials
-			 * views
-			 * environment
-			 *  lights
-			 *  reflection map
-			 * configurations
-			 * measurements
-			 * 
-
-			 */
-
 
 			AssemblyItem assemblyItem1 = new AssemblyItem("Assembly 1");
 			AssemblyItem assemblyItem2 = new AssemblyItem("Assembly 2");
