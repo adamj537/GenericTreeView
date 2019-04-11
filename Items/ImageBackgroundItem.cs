@@ -4,7 +4,7 @@ using System.Drawing;
 namespace GenericTreeView
 {
 	[Serializable]
-	public class ImageBackgroundItem : NamedObjectItem, IBackgroundItem
+	public class ImageBackgroundItem : NamedObjectItem
 	{
 		public ImageBackgroundItem(string sName)
 		  : base(sName)

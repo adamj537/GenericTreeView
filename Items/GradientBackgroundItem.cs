@@ -4,7 +4,7 @@ using System.Drawing;
 namespace GenericTreeView
 {
 	[Serializable]
-	public class GradientBackgroundItem : NamedObjectItem, IBackgroundItem
+	public class GradientBackgroundItem : BackgroundItem
 	{
 		public GradientBackgroundItem(string sName, Color color1, Color color2)
 		  : base(sName)

@@ -64,7 +64,6 @@
     <Compile Include="Items\ComponentItem.cs" />
     <Compile Include="Items\ContainerItem.cs" />
     <Compile Include="Items\GradientBackgroundItem.cs" />
-    <Compile Include="Items\IBackgroundItem.cs" />
     <Compile Include="Items\ImageBackgroundItem.cs" />
     <Compile Include="Items\MaterialItem.cs" />
     <Compile Include="Items\NamedObjectItem.cs" />

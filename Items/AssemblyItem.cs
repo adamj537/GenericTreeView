@@ -19,4 +19,13 @@ namespace GenericTreeView
 		[TreeNode]
 		public ContainerItem<ComponentItem> Components { get; set; }
 	}
+
+	[Serializable]
+	public class BackgroundItem : NamedObjectItem
+	{
+		public BackgroundItem(string name) : base(name)
+		{
+
+		}
+	}
 }
