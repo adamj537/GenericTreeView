@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
 namespace GenericTreeView
@@ -13,6 +15,8 @@ namespace GenericTreeView
 
 		private void MainForm_Load(object sender, EventArgs e)
 		{
+			// Inspiration:  https://www.codeproject.com/Articles/23297/Generic-TreeView
+
 			// This a sample object model
 
 			// main project item
@@ -41,6 +45,14 @@ namespace GenericTreeView
 
 			// add project item to tree...
 			m_ProjectTree.Populate<TreeNodeAttribute>(projectItem, "Name");
+
+			// Binary format
+			BinaryFormatter bf = new BinaryFormatter();
+			Stream fileStream = new FileStream(@"C:\\Users\\ajohnson\\Desktop\\test.dat", FileMode.Create, FileAccess.Write, FileShare.None);
+
+			bf.Serialize(fileStream, projectItem);
+
+			fileStream.Close();
 		}
 
 	}
