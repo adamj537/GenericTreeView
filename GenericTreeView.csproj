@@ -60,13 +60,13 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="INamedObject.cs" />
+    <Compile Include="IObjectItem.cs" />
     <Compile Include="Items\AssemblyItem.cs" />
     <Compile Include="Items\BackgroundItem.cs" />
     <Compile Include="Items\ComponentItem.cs" />
     <Compile Include="Items\ContainerItem.cs" />
     <Compile Include="Items\GradientBackgroundItem.cs" />
     <Compile Include="Items\ImageBackgroundItem.cs" />
-    <Compile Include="Items\IObjectItem.cs" />
     <Compile Include="Items\MaterialItem.cs" />
     <Compile Include="Items\NamedObjectItem.cs" />
     <Compile Include="Items\ProjectItem.cs" />
