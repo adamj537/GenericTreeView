@@ -11,9 +11,9 @@ namespace GenericTreeView
 	[Serializable]
 	public class ContainerItem<T> : List<T>, INamedObjectItem
 	{
-		public ContainerItem(string sName)
+		public ContainerItem(string name)
 		{
-			Name = sName;
+			Name = name;
 		}
 
 		[TreeNode]
