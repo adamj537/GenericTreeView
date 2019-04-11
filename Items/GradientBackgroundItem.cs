@@ -13,10 +13,10 @@ namespace ShaderEditor
 			Color2 = color2;
 		}
 
-		[TreeNodeAttribute]
+		[TreeNode]
 		public Color Color1 { get; set; }
 
-		[TreeNodeAttribute]
+		[TreeNode]
 		public Color Color2 { get; set; }
 	}
 }

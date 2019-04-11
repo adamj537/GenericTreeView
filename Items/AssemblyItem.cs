@@ -16,7 +16,7 @@ namespace ShaderEditor
 			Components = new ContainerItem<ComponentItem>("Components");
 		}
 
-		[TreeNodeAttribute]
+		[TreeNode]
 		public ContainerItem<ComponentItem> Components { get; set; }
 	}
 }

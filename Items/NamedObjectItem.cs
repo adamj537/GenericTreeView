@@ -5,14 +5,11 @@ namespace ShaderEditor
 	[Serializable]
 	public class NamedObjectItem : INamedObjectItem, IObjectItem
 	{
-		public NamedObjectItem(string sName)
+		public NamedObjectItem(string name)
 		{
-			Name = sName;
+			Name = name;
 		}
 
-		#region INamedObject Members
 		public string Name { get; set; }
-
-		#endregion
 	}
 }

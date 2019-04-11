@@ -13,13 +13,13 @@ namespace ShaderEditor
 			MaterialSetsItem = new ContainerItem<ContainerItem<MaterialItem>>("Material Sets");
 		}
 
-		[TreeNodeAttribute]
+		[TreeNode]
 		public ContainerItem<AssemblyItem> Assemblies { get; set; }
 
-		[TreeNodeAttribute]
+		[TreeNode]
 		public ContainerItem<IBackgroundItem> Backgrounds { get; set; }
 
-		[TreeNodeAttribute(Hide = true)]
+		[TreeNode(Hide = true)]
 		public ContainerItem<ContainerItem<MaterialItem>> MaterialSetsItem { get; set; }
 	}
 }

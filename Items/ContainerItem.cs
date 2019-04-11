@@ -16,10 +16,7 @@ namespace ShaderEditor
 			Name = sName;
 		}
 
-		[TreeNodeAttribute]
-		#region INamedObjectItem Members
+		[TreeNode]
 		public string Name { get; set; }
-
-		#endregion
 	}
 }
