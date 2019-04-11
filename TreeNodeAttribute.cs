@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShaderEditor
+namespace GenericTreeView
 {
 	public class TreeNodeAttribute : Attribute
 	{

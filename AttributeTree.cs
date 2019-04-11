@@ -3,7 +3,7 @@ using System.Collections;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace ShaderEditor
+namespace GenericTreeView
 {
 	public class AttributeTree : TreeView
 	{

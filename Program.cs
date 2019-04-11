@@ -3,7 +3,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 
-namespace ShaderEditor
+namespace GenericTreeView
 {
 	static class Program
 	{

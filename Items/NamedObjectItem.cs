@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ShaderEditor
+namespace GenericTreeView
 {
 	[Serializable]
 	public class NamedObjectItem : INamedObjectItem, IObjectItem

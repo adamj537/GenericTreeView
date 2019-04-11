@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace ShaderEditor
+namespace GenericTreeView
 {
 	public partial class MainForm : Form
 	{

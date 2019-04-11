@@ -1,4 +1,4 @@
-﻿namespace ShaderEditor
+﻿namespace GenericTreeView
 {
   partial class MainForm
   {
@@ -28,7 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.m_ProjectTree = new ShaderEditor.AttributeTree();
+      this.m_ProjectTree = new GenericTreeView.AttributeTree();
       this.SuspendLayout();
       // 
       // m_ProjectTree

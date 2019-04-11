@@ -1,4 +1,4 @@
-﻿namespace ShaderEditor
+﻿namespace GenericTreeView
 {
 	public interface IObjectItem
 	{

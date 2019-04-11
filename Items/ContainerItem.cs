@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ShaderEditor
+namespace GenericTreeView
 {
 	/// <summary>
 	/// ContainerItem is a list and also implements INamedObjectItem, so the container can have a name

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace ShaderEditor
+namespace GenericTreeView
 {
 	[Serializable]
 	public class ImageBackgroundItem : NamedObjectItem, IBackgroundItem
