@@ -60,7 +60,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="INamedObject.cs" />
-    <Compile Include="Items\NamedObjectItem.cs" />
+    <Compile Include="Items\NamedObject.cs" />
     <Compile Include="Items\ProjectItem.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>

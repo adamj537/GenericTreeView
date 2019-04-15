@@ -5,7 +5,7 @@ using System.Drawing;
 namespace GenericTreeView
 {
 	[Serializable]
-	public class MaterialItem : NamedObjectItem
+	public class MaterialItem : NamedObject
 	{
 		public MaterialItem(string name) : base(name)
 		{
@@ -14,7 +14,7 @@ namespace GenericTreeView
 	}
 
 	[Serializable]
-	public class ImageBackgroundItem : NamedObjectItem
+	public class ImageBackgroundItem : NamedObject
 	{
 		public ImageBackgroundItem(string name) : base(name)
 		{
@@ -41,7 +41,7 @@ namespace GenericTreeView
 	}
 
 	[Serializable]
-	public class ComponentItem : NamedObjectItem
+	public class ComponentItem : NamedObject
 	{
 		public ComponentItem() : base("Component")
 		{
@@ -55,7 +55,7 @@ namespace GenericTreeView
 	}
 
 	[Serializable]
-	public class AssemblyItem : NamedObjectItem
+	public class AssemblyItem : NamedObject
 	{
 		public AssemblyItem() : this("Assembly")
 		{
@@ -72,7 +72,7 @@ namespace GenericTreeView
 	}
 
 	[Serializable]
-	public class BackgroundItem : NamedObjectItem
+	public class BackgroundItem : NamedObject
 	{
 		public BackgroundItem(string name) : base(name)
 		{
@@ -98,7 +98,7 @@ namespace GenericTreeView
 	}
 
 	[Serializable]
-	public class ProjectItem : NamedObjectItem
+	public class ProjectItem : NamedObject
 	{
 		public ProjectItem(string name) : base(name)
 		{
