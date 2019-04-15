@@ -5,21 +5,25 @@ using System.Drawing;
 namespace GenericTreeView
 {
 	[Serializable]
-	public class MaterialItem : NamedObject
+	public class MaterialItem : INamedObject
 	{
-		public MaterialItem(string name) : base(name)
+		public MaterialItem(string name)
 		{
-
+			Name = name;
 		}
+
+		public string Name { get; set; }
 	}
 
 	[Serializable]
-	public class ImageBackgroundItem : NamedObject
+	public class ImageBackgroundItem : INamedObject
 	{
-		public ImageBackgroundItem(string name) : base(name)
+		public ImageBackgroundItem(string name)
 		{
-
+			Name = name;
 		}
+
+		public string Name { get; set; }
 
 		public Image Image { get; set; }
 	}
@@ -27,7 +31,7 @@ namespace GenericTreeView
 	[Serializable]
 	public class GradientBackgroundItem : BackgroundItem
 	{
-		public GradientBackgroundItem(string sName, Color color1, Color color2) : base(sName)
+		public GradientBackgroundItem(string name, Color color1, Color color2) : base(name)
 		{
 			Color1 = color1;
 			Color2 = color2;
@@ -41,43 +45,50 @@ namespace GenericTreeView
 	}
 
 	[Serializable]
-	public class ComponentItem : NamedObject
+	public class ComponentItem : INamedObject
 	{
-		public ComponentItem() : base("Component")
+		public ComponentItem() : this("Component")
 		{
 
 		}
 
-		public ComponentItem(string name) : base(name)
+		public ComponentItem(string name)
 		{
-
+			Name = name;
 		}
+
+		public string Name { get; set; }
 	}
 
 	[Serializable]
-	public class AssemblyItem : NamedObject
+	public class AssemblyItem : INamedObject
 	{
 		public AssemblyItem() : this("Assembly")
 		{
 
 		}
 
-		public AssemblyItem(string sName) : base(sName)
+		public AssemblyItem(string name)
 		{
+			Name = name;
 			Components = new ContainerItem<ComponentItem>("Components");
 		}
+
+		public string Name { get; set; }
 
 		[TreeNode]
 		public ContainerItem<ComponentItem> Components { get; set; }
 	}
 
 	[Serializable]
-	public class BackgroundItem : NamedObject
+	public class BackgroundItem : INamedObject
 	{
-		public BackgroundItem(string name) : base(name)
+		public BackgroundItem(string name)
 		{
-
+			Name = name;
 		}
+
+		public string Name { get; set; }
 	}
 
 	/// <summary>
@@ -98,14 +109,17 @@ namespace GenericTreeView
 	}
 
 	[Serializable]
-	public class ProjectItem : NamedObject
+	public class ProjectItem : INamedObject
 	{
-		public ProjectItem(string name) : base(name)
+		public ProjectItem(string name)
 		{
+			Name = name;
 			Assemblies = new ContainerItem<AssemblyItem>("Assemblies");
 			Backgrounds = new ContainerItem<BackgroundItem>("Backgrounds");
 			MaterialSetsItem = new ContainerItem<ContainerItem<MaterialItem>>("Material Sets");
 		}
+
+		public string Name { get; set; }
 
 		[TreeNode]
 		public ContainerItem<AssemblyItem> Assemblies { get; set; }
