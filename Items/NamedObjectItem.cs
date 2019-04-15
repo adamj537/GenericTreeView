@@ -3,7 +3,7 @@
 namespace GenericTreeView
 {
 	[Serializable]
-	public class NamedObjectItem : INamedObjectItem
+	public class NamedObjectItem : INamedObject
 	{
 		public NamedObjectItem(string name)
 		{

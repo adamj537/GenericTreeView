@@ -1,6 +1,6 @@
 ﻿namespace GenericTreeView
 {
-	public interface INamedObjectItem
+	public interface INamedObject
 	{
 		string Name { get; set; }
 	}
