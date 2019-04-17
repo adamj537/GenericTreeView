@@ -104,7 +104,6 @@ namespace GenericTreeView
 			Name = name;
 		}
 
-		[TreeNode]
 		public string Name { get; set; }
 	}
 
@@ -127,7 +126,7 @@ namespace GenericTreeView
 		[TreeNode]
 		public ContainerItem<BackgroundItem> Backgrounds { get; set; }
 
-		[TreeNode(Hide = true)]
+		[TreeNode]
 		public ContainerItem<ContainerItem<MaterialItem>> MaterialSetsItem { get; set; }
 	}
 }

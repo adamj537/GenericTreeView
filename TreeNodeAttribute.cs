@@ -6,9 +6,6 @@ namespace GenericTreeView
 	{
 		public TreeNodeAttribute()
 		{
-			Hide = false;
 		}
-
-		public bool Hide { get; set; }
 	}
 }
