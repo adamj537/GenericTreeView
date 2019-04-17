@@ -28,32 +28,32 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.m_ProjectTree = new GenericTreeView.AttributeTree();
-      this.SuspendLayout();
-      // 
-      // m_ProjectTree
-      // 
-      this.m_ProjectTree.Location = new System.Drawing.Point(12, 12);
-      this.m_ProjectTree.Name = "m_ProjectTree";
-      this.m_ProjectTree.Size = new System.Drawing.Size(292, 384);
-      this.m_ProjectTree.TabIndex = 1;
-      // 
-      // MainForm
-      // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(316, 408);
-      this.Controls.Add(this.m_ProjectTree);
-      this.Name = "MainForm";
-      this.Text = "Form1";
-      this.Load += new System.EventHandler(this.MainForm_Load);
-      this.ResumeLayout(false);
+			this.attributeTree = new GenericTreeView.AttributeTree();
+			this.SuspendLayout();
+			// 
+			// attributeTree
+			// 
+			this.attributeTree.Location = new System.Drawing.Point(12, 12);
+			this.attributeTree.Name = "attributeTree";
+			this.attributeTree.Size = new System.Drawing.Size(292, 384);
+			this.attributeTree.TabIndex = 1;
+			// 
+			// MainForm
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.ClientSize = new System.Drawing.Size(316, 408);
+			this.Controls.Add(this.attributeTree);
+			this.Name = "MainForm";
+			this.Text = "Form1";
+			this.Load += new System.EventHandler(this.MainForm_Load);
+			this.ResumeLayout(false);
 
     }
 
     #endregion
 
-    private AttributeTree m_ProjectTree;
+    private AttributeTree attributeTree;
   }
 }
 

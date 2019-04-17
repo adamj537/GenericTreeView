@@ -43,8 +43,8 @@ namespace GenericTreeView
 			// add a background to the backgrounds of the main project item
 			projectItem.Backgrounds.Add(new GradientBackgroundItem("Cool Blue", Color.Beige, Color.Aqua));
 
-			// add project item to tree...
-			m_ProjectTree.Populate<TreeNodeAttribute>(projectItem, "Name");
+			// Add the settings object to the tree view.
+			attributeTree.Populate<TreeNodeAttribute>(projectItem, "Name");
 
 			// Binary format
 			BinaryFormatter bf = new BinaryFormatter();
