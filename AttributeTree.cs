@@ -12,111 +12,108 @@ namespace GenericTreeView
 		/// </summary>
 		/// <typeparam name="TAttribute">Attribute that signifies that the property should be added to the tree</typeparam>
 		/// <param name="item">root item from your object model</param>
-		/// <param name="sPropertyForText">Name of the property to call to get the text for the treenode</param>
-		public void Populate<TAttribute>(object item, string sPropertyForText)
-		  where TAttribute : Attribute
+		/// <param name="nameProperty">name of the property to call to get the text for the treenode</param>
+		public void Populate<TAttribute>(object item, string nameProperty) where TAttribute : Attribute
 		{
 			BeginUpdate();
 
 			Nodes.Clear();
 
-			Populate<TAttribute>(item, null, sPropertyForText);
+			Populate<TAttribute>(item, null, nameProperty);
 
 			EndUpdate();
 		}
 
 		/// <summary>
 		/// Add a new tree object to the tree, and recurse through any IEnumerable properties
-		/// We could of sorted the nodes, but decided that it's not the ideal place to do that here, the order is taken
-		/// from the order they are listed in the class file.
 		/// </summary>
-		/// <typeparam name="TAttribute"></typeparam>
 		/// <typeparam name="TAttribute">Attribute that signifies that the property should be added to the tree</typeparam>
 		/// <param name="item">root item from your object model</param>
-		/// <param name="tnParent">Parent tree node</param>
-		/// <param name="sPropertyForText">Name of the property to call to get the text for the treenode</param>
-		public void Populate<TAttribute>(object item, TreeNode tnParent, string sPropertyForText)
-		  where TAttribute : Attribute
+		/// <param name="parent">parent tree node</param>
+		/// <param name="nameProperty">name of the property to call to get the text for the treenode</param>
+		public void Populate<TAttribute>(object item, TreeNode parent, string nameProperty) where TAttribute : Attribute
 		{
 			BeginUpdate();
 
-			TreeNode tn = Add<TAttribute>(item, tnParent, sPropertyForText);
+			TreeNode treeNode = Add<TAttribute>(item, parent, nameProperty);
 
-			if (null != tn)
+			if (treeNode != null)
 			{
-				Nodes.Add(tn);
+				Nodes.Add(treeNode);
 			}
 
 			EndUpdate();
 		}
 
 		/// <summary>
-		/// 
+		/// Create a new tree node from an object.
 		/// </summary>
 		/// <typeparam name="TAttribute"></typeparam>
-		/// <param name="item"></param>
-		/// <param name="treeNodeParent"></param>
-		/// <param name="sPropertyForText"></param>
+		/// <param name="parent">parent node to attach this new node to</param>
+		/// <param name="nameProperty">name of the property to call to get the text for the treenode</param>
 		/// <returns></returns>
-		private TreeNode Add<TAttribute>(object item, TreeNode treeNodeParent, string sPropertyForText)
-		  where TAttribute : Attribute
+		private TreeNode Add<TAttribute>(object item, TreeNode parent, string nameProperty) where TAttribute : Attribute
 		{
-			if (null != item)
+			TreeNode treeNode = null;
+
+			// Check that the item is valid.
+			if (item != null)
 			{
-				// See if we can get the property sPropertyForText from the item
-				PropertyInfo propertyInfoForText = item.GetType().GetProperty(sPropertyForText);
+				// See if we can get the item's name property.
+				PropertyInfo namePropertyInfo = item.GetType().GetProperty(nameProperty);
 
-				// if we can't access the property then it might not be a valid object, or not a valid property so return.
-				if (null == propertyInfoForText)
+				// Check that the item's name property is valid.
+				if (namePropertyInfo != null)
 				{
-					return null;
-				}
-
-				// Create a new tree node
-				TreeNode treeNode = new TreeNode(propertyInfoForText.GetValue(item, null).ToString());
-
-				// Store a reference to the actual object as the TreeNode's Tag property
-				treeNode.Tag = item;
-
-				// if there's a valid parent add the new treenode (tn) to the parent
-				if (null != treeNodeParent)
-				{
-					treeNodeParent.Nodes.Add(treeNode);
-				}
-
-				// Is item a array or container of objects? i.e. if it implements IEnumerable we can enumerate over
-				// those objects to see if they can be added to the tree.
-				IEnumerable enumerableObject = item as IEnumerable;
-
-				if (null != enumerableObject)
-				{
-					foreach (object itemInEnumerable in enumerableObject)
+					// Create a new tree node and store a reference to the actual object as the Tag property.
+					treeNode = new TreeNode(namePropertyInfo.GetValue(item, null).ToString())
 					{
-						Add<TAttribute>(itemInEnumerable, treeNode, sPropertyForText);
+						Tag = item
+					};
+
+					// If there's a valid parent, add the new treenode to the parent.
+					if (parent != null)
+					{
+						parent.Nodes.Add(treeNode);
+					}
+
+					// Is item a array or container of objects? i.e. if it implements IEnumerable we can enumerate over
+					// those objects to see if they can be added to the tree.
+					IEnumerable enumerableObject = item as IEnumerable;
+
+					if (enumerableObject != null)
+					{
+						foreach (object itemInEnumerable in enumerableObject)
+						{
+							Add<TAttribute>(itemInEnumerable, treeNode, nameProperty);
+						}
+					}
+
+					// Get the object's properties.
+					PropertyInfo[] propertyInfos = item.GetType().GetProperties();
+
+					// See if there are any that have the attribute TreeNodeAttribute assigned to it.
+					foreach (PropertyInfo propertyInfo in propertyInfos)
+					{
+						// Check all attribs available on the property
+						object[] attribs = propertyInfo.GetCustomAttributes(false);
+
+						foreach (object a in attribs)
+						{
+							if (a is TAttribute ta)
+							{
+								// Try and add the return value of the property to the tree.
+								// If the property returns an object that is not an instance
+								// of INamedObjectItem then it will be null, which is
+								// caught at the begining of this method.
+								Add<TAttribute>(propertyInfo.GetValue(item, null), treeNode, nameProperty);
+							}
+						}
 					}
 				}
-
-				// Get the object's properties and see if there are any that have the attribute TreeNodeAttribute assigned to it
-				PropertyInfo[] propertyInfos = item.GetType().GetProperties();
-
-				foreach (PropertyInfo propertyInfo in propertyInfos)
-				{
-					// Check all attribs available on the property
-					object[] attribs = propertyInfo.GetCustomAttributes(false);
-
-					foreach (TAttribute treeNodeAttribute in attribs)
-					{
-						// Try and add the return value of the property to the tree,
-						// if the property returns an object that is not an instance of INamedObjectItem then it will be null which is
-						// caught at the begining of this method.
-						Add<TAttribute>(propertyInfo.GetValue(item, null), treeNode, sPropertyForText);
-					}
-				}
-
-				return treeNode;
 			}
 
-			return null;
+			return treeNode;
 		}
 
 	}
