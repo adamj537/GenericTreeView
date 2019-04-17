@@ -77,29 +77,29 @@ namespace GenericTreeView
 						parent.Nodes.Add(treeNode);
 					}
 
-					// Is item a array or container of objects? i.e. if it implements IEnumerable we can enumerate over
-					// those objects to see if they can be added to the tree.
-					IEnumerable enumerableObject = item as IEnumerable;
-
-					if (enumerableObject != null)
+					// If the item is enumerable (i.e. an array or container of objects)...
+					if (item is IEnumerable enumerableItem)
 					{
-						foreach (object itemInEnumerable in enumerableObject)
+						// Iterate over each object in the enumeration.
+						foreach (object i in enumerableItem)
 						{
-							Add<TAttribute>(itemInEnumerable, treeNode, nameProperty);
+							Add<TAttribute>(i, treeNode, nameProperty);
 						}
 					}
 
 					// Get the object's properties.
 					PropertyInfo[] propertyInfos = item.GetType().GetProperties();
 
-					// See if there are any that have the attribute TreeNodeAttribute assigned to it.
+					// For each property...
 					foreach (PropertyInfo propertyInfo in propertyInfos)
 					{
-						// Check all attribs available on the property
+						// Fetch all attributes available on the property.
 						object[] attribs = propertyInfo.GetCustomAttributes(false);
 
+						// For each attribute...
 						foreach (object a in attribs)
 						{
+							// If it is a TreeNodeAttribute...
 							if (a is TAttribute ta)
 							{
 								// Try and add the return value of the property to the tree.
