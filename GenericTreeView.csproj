@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="INamedObject.cs" />
     <Compile Include="Items\ProjectItem.cs" />
+    <Compile Include="Items\TestSettings.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

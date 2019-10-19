@@ -71,13 +71,13 @@ namespace GenericTreeView
 		public AssemblyItem(string name)
 		{
 			Name = name;
-			Components = new ContainerItem<ComponentItem>("Components");
+			Components = new NamedList<ComponentItem>("Components");
 		}
 
 		public string Name { get; set; }
 
 		[TreeNode]
-		public ContainerItem<ComponentItem> Components { get; set; }
+		public NamedList<ComponentItem> Components { get; set; }
 	}
 
 	[Serializable]
@@ -92,14 +92,16 @@ namespace GenericTreeView
 	}
 
 	/// <summary>
-	/// ContainerItem is a list and also implements INamedObject, so the container can have a name
-	/// This will save creating specific classes for each container
+	/// A list which also has a name.
 	/// </summary>
+	/// <remarks>
+	/// This will save creating specific classes for each list.
+	/// </remarks>
 	/// <typeparam name="T"></typeparam>
 	[Serializable]
-	public class ContainerItem<T> : List<T>, INamedObject
+	public class NamedList<T> : List<T>, INamedObject
 	{
-		public ContainerItem(string name)
+		public NamedList(string name)
 		{
 			Name = name;
 		}
@@ -113,20 +115,46 @@ namespace GenericTreeView
 		public ProjectItem(string name)
 		{
 			Name = name;
-			Assemblies = new ContainerItem<AssemblyItem>("Assemblies");
-			Backgrounds = new ContainerItem<BackgroundItem>("Backgrounds");
-			MaterialSetsItem = new ContainerItem<ContainerItem<MaterialItem>>("Material Sets");
 		}
 
 		public string Name { get; set; }
 
 		[TreeNode]
-		public ContainerItem<AssemblyItem> Assemblies { get; set; }
+		public NamedList<AssemblyItem> Assemblies { get; set; } = new NamedList<AssemblyItem>("Assemblies")
+		{
+			new AssemblyItem("Assembly 1")
+			{
+				Components = new NamedList<ComponentItem>("Components")
+				{
+					new ComponentItem("Component 1"),
+					new ComponentItem("Component 2"),
+					new ComponentItem("Component 3"),
+				}
+			},
+			new AssemblyItem("Assembly 2")
+			{
+				Components = new NamedList<ComponentItem>("Components")
+				{
+					new ComponentItem("Component 4"),
+					new ComponentItem("Component 5"),
+				}
+			},
+			new AssemblyItem("Assembly 3")
+			{
+				Components = new NamedList<ComponentItem>("Components")
+				{
+					new ComponentItem("Component 6")
+				}
+			}
+		};
 
 		[TreeNode]
-		public ContainerItem<BackgroundItem> Backgrounds { get; set; }
+		public NamedList<BackgroundItem> Backgrounds { get; set; } = new NamedList<BackgroundItem>("Backgrounds")
+		{
+			new GradientBackgroundItem("Cool Blue", Color.Beige, Color.Aqua)
+		};
 
 		[TreeNode]
-		public ContainerItem<ContainerItem<MaterialItem>> MaterialSetsItem { get; set; }
+		public NamedList<NamedList<MaterialItem>> MaterialSetsItem { get; set; } = new NamedList<NamedList<MaterialItem>>("Material Sets");
 	}
 }
