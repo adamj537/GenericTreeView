@@ -28,22 +28,23 @@
     /// </summary>
     private void InitializeComponent()
     {
-			this.attributeTree = new GenericTreeView.AttributeTree();
+			this.treeView1 = new System.Windows.Forms.TreeView();
 			this.SuspendLayout();
 			// 
-			// attributeTree
+			// treeView1
 			// 
-			this.attributeTree.Location = new System.Drawing.Point(12, 12);
-			this.attributeTree.Name = "attributeTree";
-			this.attributeTree.Size = new System.Drawing.Size(292, 384);
-			this.attributeTree.TabIndex = 1;
+			this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.treeView1.Location = new System.Drawing.Point(0, 0);
+			this.treeView1.Name = "treeView1";
+			this.treeView1.Size = new System.Drawing.Size(316, 408);
+			this.treeView1.TabIndex = 0;
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(316, 408);
-			this.Controls.Add(this.attributeTree);
+			this.Controls.Add(this.treeView1);
 			this.Name = "MainForm";
 			this.Text = "Generic Tree View";
 			this.Load += new System.EventHandler(this.MainForm_Load);
@@ -51,9 +52,9 @@
 
     }
 
-    #endregion
+		#endregion
 
-    private AttributeTree attributeTree;
-  }
+		private System.Windows.Forms.TreeView treeView1;
+	}
 }
 

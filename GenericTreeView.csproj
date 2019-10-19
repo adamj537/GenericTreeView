@@ -56,9 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttributeTree.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="INamedObject.cs" />
     <Compile Include="Items\ProjectItem.cs" />
     <Compile Include="MainForm.cs">
