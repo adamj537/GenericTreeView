@@ -16,6 +16,18 @@ namespace GenericTreeView
 		}
 
 		/// <summary>
+		/// Remove all nodes from the tree view.
+		/// </summary>
+		public void Clear()
+		{
+			treeView1.BeginUpdate();
+
+			treeView1.Nodes.Clear();
+
+			treeView1.EndUpdate();
+		}
+
+		/// <summary>
 		/// Populate a new tree from an object, and recurse through any IEnumerable properties
 		/// </summary>
 		/// <typeparam name="TAttribute">Attribute that signifies that the property should be added to the tree</typeparam>
@@ -24,8 +36,6 @@ namespace GenericTreeView
 		public void Populate<TAttribute>(object item, string nameProperty) where TAttribute : Attribute
 		{
 			treeView1.BeginUpdate();
-
-			treeView1.Nodes.Clear();
 
 			Populate<TAttribute>(item, null, nameProperty);
 
