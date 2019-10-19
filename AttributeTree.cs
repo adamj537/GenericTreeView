@@ -59,55 +59,59 @@ namespace GenericTreeView
 			// Check that the item is valid.
 			if (item != null)
 			{
-				// See if we can get the item's name property.
-				PropertyInfo namePropertyInfo = item.GetType().GetProperty(nameProperty);
+				// See if we can get the item's "name" property.
+				string name = item.GetType().GetProperty(nameProperty)?.GetValue(item, null).ToString();
 
-				// Check that the item's name property is valid.
-				if (namePropertyInfo != null)
+				// If there is no name property, use the name of the item's type instead.
+				if (name == null)
 				{
-					// Create a new tree node and store a reference to the actual object as the Tag property.
-					treeNode = new TreeNode(namePropertyInfo.GetValue(item, null).ToString())
-					{
-						Tag = item
-					};
+					name = item.GetType().Name.ToString();
+				}
 
-					// If there's a valid parent, add the new treenode to the parent.
-					if (parent != null)
+				// Create a new tree node and store a reference to the actual object as the Tag property.
+				treeNode = new TreeNode(name)
+				{
+					Tag = item
+				};
+
+				// If there's a valid parent, add the new treenode to the parent.
+				if (parent != null)
+				{
+					parent.Nodes.Add(treeNode);
+				}
+
+				// If the item is enumerable (i.e. an array or container of objects)...
+				if (item is IEnumerable enumerableItem)
+				{
+					// Iterate over each object in the enumeration.
+					foreach (object i in enumerableItem)
 					{
-						parent.Nodes.Add(treeNode);
+						Add<TAttribute>(i, treeNode, nameProperty);
 					}
+				}
 
-					// If the item is enumerable (i.e. an array or container of objects)...
-					if (item is IEnumerable enumerableItem)
+				// Get the object's properties.
+				PropertyInfo[] propertyInfos = item.GetType().GetProperties();
+
+				// For each property...
+				foreach (PropertyInfo propertyInfo in propertyInfos)
+				{
+					// Fetch all attributes available on the property.
+					object[] attribs = propertyInfo.GetCustomAttributes(false);
+
+					// For each attribute...
+					foreach (object a in attribs)
 					{
-						// Iterate over each object in the enumeration.
-						foreach (object i in enumerableItem)
+						// If it is a TreeNodeAttribute...
+						if (a is TAttribute ta)
 						{
-							Add<TAttribute>(i, treeNode, nameProperty);
-						}
-					}
+							var property = propertyInfo.GetValue(item, null);
 
-					// Get the object's properties.
-					PropertyInfo[] propertyInfos = item.GetType().GetProperties();
-
-					// For each property...
-					foreach (PropertyInfo propertyInfo in propertyInfos)
-					{
-						// Fetch all attributes available on the property.
-						object[] attribs = propertyInfo.GetCustomAttributes(false);
-
-						// For each attribute...
-						foreach (object a in attribs)
-						{
-							// If it is a TreeNodeAttribute...
-							if (a is TAttribute ta)
-							{
-								// Try and add the return value of the property to the tree.
-								// If the property returns an object that is not an instance
-								// of INamedObjectItem then it will be null, which is
-								// caught at the begining of this method.
-								Add<TAttribute>(propertyInfo.GetValue(item, null), treeNode, nameProperty);
-							}
+							// Try and add the return value of the property to the tree.
+							// If the property returns an object that is not an instance
+							// of INamedObjectItem then it will be null, which is
+							// caught at the begining of this method.
+							Add<TAttribute>(property, treeNode, nameProperty);
 						}
 					}
 				}
