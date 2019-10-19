@@ -45,7 +45,7 @@
 			this.ClientSize = new System.Drawing.Size(316, 408);
 			this.Controls.Add(this.attributeTree);
 			this.Name = "MainForm";
-			this.Text = "Form1";
+			this.Text = "Generic Tree View";
 			this.Load += new System.EventHandler(this.MainForm_Load);
 			this.ResumeLayout(false);
 
