@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Drawing;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -121,6 +121,11 @@ namespace GenericTreeView
 					// For each attribute...
 					foreach (object a in attribs)
 					{
+						if (a is DisplayNameAttribute)
+						{
+							DisplayNameAttribute dna = (DisplayNameAttribute)a;
+							Console.WriteLine("DisplayName:" + dna.DisplayName);
+						}
 						// If it is a TreeNodeAttribute...
 						if (a is TAttribute ta)
 						{
