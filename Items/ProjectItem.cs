@@ -91,24 +91,6 @@ namespace GenericTreeView
 		public string Name { get; set; }
 	}
 
-	/// <summary>
-	/// A list which also has a name.
-	/// </summary>
-	/// <remarks>
-	/// This will save creating specific classes for each list.
-	/// </remarks>
-	/// <typeparam name="T"></typeparam>
-	[Serializable]
-	public class NamedList<T> : List<T>, INamedObject
-	{
-		public NamedList(string name)
-		{
-			Name = name;
-		}
-
-		public string Name { get; set; }
-	}
-
 	[Serializable]
 	public class ProjectItem : INamedObject
 	{
